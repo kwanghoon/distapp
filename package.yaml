@@ -1,0 +1,75 @@
+name:                distapp
+version:             0.1.0.0
+github:              "kwanghoon/distapp"
+license:             BSD-3-Clause
+author:              "Kwanghoon Choi"
+maintainer:          "lazyswamp@gmail.com"
+copyright:           "(C) Copyright 2024 Kwanghoon Choi"
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            application
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/kwanghoon/distapp#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- distributed-process
+- network-transport-tcp
+- binary
+- mtl
+- lens
+- random
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  distapp-exe:
+    main:                Main.hs
+    source-dirs:         app/pingbong
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - distapp
+
+  distcal-exe:
+    main:                Main.hs
+    source-dirs:         app/distcalculus
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - distapp
+
+tests:
+  distapp-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - distapp
